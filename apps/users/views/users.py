@@ -1,6 +1,7 @@
 from rest_framework import views
 from rest_framework.response import Response
 from rest_framework import viewsets, mixins
+from django.http import HttpResponse
 
 from apps.users.models import User
 from apps.users.serializers import UserSerializer, UserBasicSerializer
@@ -47,3 +48,7 @@ class UserViewSet(mixins.CreateModelMixin,
         user = self.get_object()
         user.soft_delete()
         return Response({"message": "User Deleted Successfully"})
+
+
+def test(request):
+    return HttpResponse("Hello, world. You're at the polls index.")

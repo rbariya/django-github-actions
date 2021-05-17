@@ -159,6 +159,7 @@ SIMPLE_JWT = {
 
 # Login Exempts
 LOGIN_EXEMPT_PATHS = (
+    r'api/test',
     r'api/auth/login',
     r'api/auth/refresh',
     r'api/auth/reset-password',
