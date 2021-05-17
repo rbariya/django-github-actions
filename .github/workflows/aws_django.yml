@@ -43,9 +43,9 @@ jobs:
 
     - name: Setup python environment # setting python environment to 3.x
       uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
-      # run: source ~/venv/bin/activate
+      with:
+        python-version: '3.9'
+    # run: source ~/venv/bin/activate
     - name: Install requirements # install application requirements
       run: pip install -r requirements.txt
     - name: Run Migrations # run migrations to create table in side car db container
