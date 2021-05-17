@@ -42,19 +42,22 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Setup python environment # setting python environment to 3.x
-      run: source ~/venv/bin/activate
+      uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      # run: source ~/venv/bin/activate
     - name: Install requirements # install application requirements
       run: pip install -r requirements.txt
     - name: Run Migrations # run migrations to create table in side car db container
       run: python manage.py migrate
     - name: Run Test # running tests
       run: python manage.py test
-    - name: Restart daemon
-      run: sudo systemctl daemon-reload
-    - name: Restart gunicorn
-      run: sudo systemctl restart gunicorn
-    - name: Restart nginx 
-      run: sudo systemctl restart nginx
+    # - name: Restart daemon
+    #   run: sudo systemctl daemon-reload
+    # - name: Restart gunicorn
+    #   run: sudo systemctl restart gunicorn
+    # - name: Restart nginx 
+    #   run: sudo systemctl restart nginx
  
 
 
