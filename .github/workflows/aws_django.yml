@@ -49,10 +49,12 @@ jobs:
       run: python manage.py migrate
     - name: Run Test # running tests
       run: python manage.py test
-    - name: Restart server
-    - run: sudo systemctl daemon-reload
-    - run: sudo systemctl restart gunicorn
-    - run: sudo systemctl restart nginx
+    - name: Restart daemon
+      run: sudo systemctl daemon-reload
+    - name: Restart gunicorn
+      run: sudo systemctl restart gunicorn
+    - name: Restart nginx 
+      run: sudo systemctl restart nginx
  
 
 
