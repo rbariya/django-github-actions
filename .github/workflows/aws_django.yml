@@ -50,9 +50,9 @@ jobs:
     - name: Run Test # running tests
       run: python manage.py test
     - name: Restart server
-      run: sudo systemctl daemon-reload
-      run: sudo systemctl restart gunicorn
-      run: sudo systemctl restart nginx
+    - run: sudo systemctl daemon-reload
+    - run: sudo systemctl restart gunicorn
+    - run: sudo systemctl restart nginx
  
 
 
