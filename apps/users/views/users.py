@@ -51,4 +51,4 @@ class UserViewSet(mixins.CreateModelMixin,
 
 
 def test(request):
-    return HttpResponse("Hello, world.")
+    return HttpResponse("Hello, world. updated")

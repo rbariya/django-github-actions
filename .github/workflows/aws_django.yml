@@ -46,18 +46,29 @@ jobs:
       with:
         python-version: '3.9'
     # run: source ~/venv/bin/activate
-    - name: Install requirements # install application requirements
-      run: pip install -r requirements.txt
-    - name: Run Migrations # run migrations to create table in side car db container
-      run: python manage.py migrate
-    - name: Run Test # running tests
-      run: python manage.py test
-    # - name: Restart daemon
-    #   run: sudo systemctl daemon-reload
-    # - name: Restart gunicorn
-    #   run: sudo systemctl restart gunicorn
-    # - name: Restart nginx 
-    #   run: sudo systemctl restart nginx
+    - name: Install Python Virtual ENV
+      run: pip3 install virtualenv
+    - name:  Setup Virtual env
+      uses: actions/cache@v2
+      id: cache-venv
+      with:
+        path: venv
+        key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements*.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-venv-
+    
+    - name: Activate and Install Depencies into Virtual env
+      run: python -m venv venv && source venv/bin/activate &&
+          pip3 install -r requirements.txt
+      if: steps.cache-venv.outputs.cache-hit != 'true'   
+    - name: Activate venv    
+      run: . venv/bin/activate && python manage.py migrate
+    - name: Restart daemon
+      run: sudo systemctl daemon-reload
+    - name: Restart gunicorn
+      run: sudo systemctl restart gunicorn
+    - name: Restart nginx 
+      run: sudo systemctl restart nginx
  
 
 
