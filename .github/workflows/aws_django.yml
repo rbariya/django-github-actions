@@ -62,7 +62,7 @@ jobs:
           pip3 install -r requirements.txt
       if: steps.cache-venv.outputs.cache-hit != 'true'   
     - name: Activate venv    
-      run: . venv/bin/activate && python manage.py migrate
+      run: . venv/bin/activate && python manage.py makemigrations && python manage.py migrate
     - name: Restart daemon
       run: sudo systemctl daemon-reload
     - name: Restart gunicorn
