@@ -2,8 +2,6 @@
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
 
 name: Deploy to Amazon EC2
 
@@ -13,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8, 3.9,]
+        python-version: [3.8]
     steps:
     - name: checkout
       uses: actions/checkout@v2
@@ -37,7 +35,6 @@ jobs:
         python manage.py test
 
   deploy:
-    needs: [test]
     if: (jobs.test.status == 'success')
     name: deploy
     runs-on: self-hosted
