@@ -38,7 +38,8 @@ jobs:
 
   deploy:
     name: Deploy
-    if: test
+    needs: [test, ]
+    if: (jobs.test.status == 'success')
     runs-on: self-hosted
     environment: production
 
