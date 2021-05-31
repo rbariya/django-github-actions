@@ -55,4 +55,4 @@ def test(request):
         'message': 'configured CI/CD in github actions',
         'tech': 'django'
     }
-    return JsonResponse(data)(response_data)
+    return JsonResponse(response_data)
