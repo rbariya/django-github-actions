@@ -38,6 +38,7 @@ jobs:
 
   deploy:
     name: Deploy
+    if: test
     runs-on: self-hosted
     environment: production
 
