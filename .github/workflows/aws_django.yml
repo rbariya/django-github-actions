@@ -37,8 +37,9 @@ jobs:
         python manage.py test
 
   deploy:
-    name: Deploy
+    needs: [test]
     if: (jobs.test.status == 'success')
+    name: deploy
     runs-on: self-hosted
     environment: production
 
