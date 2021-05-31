@@ -36,7 +36,7 @@ jobs:
       
 
   deploy:
-    if: ${{ jobs.test.result == 'success' }}
+    if: jobs.test.result == 'success'
     name: deploy
     runs-on: self-hosted
     environment: production
